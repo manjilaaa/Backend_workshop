@@ -1,8 +1,16 @@
+// connectionDb.js
 import mongoose from "mongoose";
+
 async function connectDB() {
-    const connectionString = "mongodb+srv://manjila:manjila9@cluster0.4dggrvy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0your_mongoDB_string"
-        .catch(() => {
-            console.log("error while connecting to databse.")
-        })
+    try {
+        await mongoose.connect("mongodb+srv://Manjila:manjila9@cluster0.xn6mwh7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        });
+        console.log("✅ MongoDB connected successfully");
+    } catch (error) {
+        console.error("❌ Error connecting to MongoDB:", error.message);
+    }
 }
+
 export default connectDB;

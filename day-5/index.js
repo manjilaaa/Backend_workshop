@@ -1,5 +1,7 @@
 import express from "express"
 import jwt from "jsonwebtoken"
+import connectDB from "./connectDb.js";
+import User from "./userSchema.js";
 import mongoose from "mongoose";
 const app = express()
 app.use(express.json())
@@ -26,6 +28,7 @@ app.get("/profile", (req, res) => {
         user: decoded
     })
 })
+connectDB();
 app.post("/saveUser", async (req, res) => {
     const { name, email, phone } = req.body;
     const newUser = new User({
